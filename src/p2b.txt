@@ -1,0 +1,9 @@
+6363
+5488
+
+The two layouts convolve to the same results, 
+according to assertions in the debug build, 
+but the Morton-order pass is quicker: 
+The convolution streams input and kernel sequentially because B is stored so that each 4x4x4 block is contiguous, 
+but the row-major version reads In stride-4, 
+A pays more cache misses by jumping over three nested loops (the disparity grows to ~2.3x in the unoptimized debug build).

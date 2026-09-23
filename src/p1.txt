@@ -1,0 +1,8 @@
+2617 347898375840389362
+51683 347898375840389362
+
+Because the column-major fill stores the same rng(0) sequence, 
+iterating with columns on the outside visits the same integers in the same order, 
+which is why the two sums are equal. 
+While the column-major walk is almost 20 times slower since it skips 4000*8 = 32 KiB between successive accesses and misses the cache nearly every time, 
+the row-major walk reads memory sequentially and uses the hardware prefetcher.
